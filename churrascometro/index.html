@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Churrascometro</title>
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/e72c3bd2a1.js" crossorigin="anonymous"></script>
     <!--CSS-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     
     <div class="container">
         <div class="box">
-            <h2>Churrascometro</h2>
+            <h2><i class="fas fa-burn"></i> Churrascometro</h2>
             <h3>Quantidade de adultos</h3>
             <input id="adultos" type="number" placeholder="informe aqui...">
 
@@ -19,10 +22,17 @@
             <input id="criancas" type="number" placeholder="informe aqui...">
 
             <h3>Duração da festa</h3>
-            <input id="duracao" type="number" placeholder="informe aqui em minutos...">
+            <input id="duracao" type="number" placeholder="informe aqui em horas...">
 
-            <input id="btn-calcular" type="button" value="Calcular">
+            <input onclick="calcular()" id="btn-calcular" type="button" value="Calcular">
+            
+            <div id="resultado">
+                <!--Aqui vai o resultado do calculo-->
+                
+            </div>
         </div><!--box-->
+
+        
     </div><!--container-->
 
     <!--JavaScript-->
