@@ -21,37 +21,24 @@ limparCampos();
 
 
 /* VALIDA SE OS CAMPOS ESTÃO CORRETOS */
-function validarCampos(){
+function validarCampos(e){
     
     let nome = inputNome.value
     let email = inputEmail.value
     let cpf = inputCpf.value
 
-    
-    if(nome != "" && nome != undefined){ 
-
-        
-        validarNome(nome)
-        
-        
-    }
-    
-
-}
-
-
-
-function validarNome(nome){
-
     if(nome.length < 3){
         errorEstilo(inputNome)
-        
+    }else if(email.match(/^([a-z0-9.-_]{1,})@([a-z.]{1,})$/) == undefined){
+        errorEstilo(inputEmail)
+    }else if(cpf.match(/^([0-9]{3}).([0-9]{3}).([0-9]{3})-([0-9]{2})$/) == undefined){
+        errorEstilo(inputCpf)
     }
-    
-    return true
+
+    alert('FORMULARIO ENVIADO COM SUCESSO!')
+    e.preventDefault()
+
 }
-
-
 
 
 
@@ -59,39 +46,32 @@ function validarNome(nome){
 /* LIMPA O ESTILO DOS CAMPOS QUE ESTAVAM COM ERRO */
 function limparCampos(){
 
-    inputNome.addEventListener('focus', ()=>{
-        inputNome.value = ""
-        inputNome.style.color = ""
-        inputNome.style.border = "none"
-        
-    })
+    inputNome.addEventListener('focus',limparEstilo)
 
-    inputEmail.addEventListener('focus', ()=>{
-        inputEmail.value = ""
-        inputEmail.style.color = ""
-        inputEmail.style.border = "none"
-        
-    })
+    inputEmail.addEventListener('focus', limparEstilo)
 
-    inputCpf.addEventListener('focus', ()=>{
-        inputCpf.value = ""
-        inputCpf.style.color = ""
-        inputCpf.style.border = "none"
-        
-    })
+    inputCpf.addEventListener('focus', limparEstilo)
 }
 
 /* ESTILO DE ERRO E LIMPA ESTILO */
 
 function errorEstilo(campo){
-    campo.value = "Nome invalido"
+    
+    if(campo == inputNome){
+        campo.value = "Minimo 2 caracteres"
+    }else if(campo == inputEmail){
+        campo.value = "Formato de e-mail incorreto"
+    }else if(campo == inputCpf){
+        campo.value = "Escreva ex:000.000.000-00"
+    }
+
     campo.style.color = "red"
     campo.style.border = "3px solid red"
 }
 
-function limparEstilo(campo){
+function limparEstilo(){
     
-    campo.value = ""
-    campo.style.color = ""
-    campo.style.border = "none"
+    this.value = ""
+    this.style.color = ""
+    this.style.border = "none"
 }
